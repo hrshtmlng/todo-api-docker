@@ -1,15 +1,13 @@
 services:
   app:
     build: .
-    container_name: todo_app
     ports:
       - "3000:3000"
     depends_on:
       - mongo
     environment:
-      MONGO_URI: mongodb://mongo:27017/todos   # ✅ IMPORTANT (no dash)
-    volumes:
-      - .:/app
+      MONGO_URI: mongodb://mongo:27017/todos   
+    
 
   mongo:
     image: mongo:6
