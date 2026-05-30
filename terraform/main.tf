@@ -42,6 +42,14 @@ resource "aws_instance" "web" {
   key_name               = "todo-api"
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 
+  user_data = <<-EOF
+#!/bin/bash
+apt update -y
+apt install -y docker.io
+systemctl enable docker
+systemctl start docker
+EOF
+
   tags = {
     Name = "terraform-ec2"
   }
